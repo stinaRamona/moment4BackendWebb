@@ -594,7 +594,28 @@ loginBtnEL.addEventListener("click", (event)=>{
     loginUser(usernameLoginStr, passwordLoginStr);
 });
 async function loginUser(username, password) {
-    console.log(username, password);
+    let response = await fetch("http://127.0.0.1:3000/api/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            username: username,
+            password: password
+        })
+    });
+    let data = await response.json();
+    //lägger in JWT token i local storage 
+    localStorage.setItem("token", data.response.token);
+    //Skickar med token för att nå skyddade sidan 
+    let authResponse = await fetch("http://127.0.0.1:3000/api/mypage", {
+        headers: {
+            "Authorization": "Bearer " + data.response.token
+        }
+    });
+    //om det inte är ok, något gått snett
+    if (!authResponse.ok) throw new Error("N\xe5got har g\xe5tt fel vid authoriseringen!");
+    else location.href = "minsida.html";
 }
 
 },{}]},["ed6Mz","47T64"], "47T64", "parcelRequireb346")
