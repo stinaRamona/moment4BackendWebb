@@ -142,14 +142,14 @@
       this[globalName] = mainExports;
     }
   }
-})({"j2YDk":[function(require,module,exports) {
+})({"ed6Mz":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
 var HMR_USE_SSE = false;
-module.bundle.HMR_BUNDLE_ID = "0bcb44a518dbc454";
+module.bundle.HMR_BUNDLE_ID = "ba77c333333b87f1";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -583,39 +583,20 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
     });
 }
 
-},{}],"1SICI":[function(require,module,exports) {
+},{}],"47T64":[function(require,module,exports) {
 "use strict";
-//hämta in element 
-let registerBtnEl = document.getElementById("registerBtn");
-registerBtnEl.addEventListener("click", (event)=>{
+//Logga in användare
+let loginBtnEL = document.getElementById("loginBtn");
+loginBtnEL.addEventListener("click", (event)=>{
     event.preventDefault();
-    let emailStr = document.getElementById("email").value;
-    let usernameStr = document.getElementById("username").value;
-    let passwordStr = document.getElementById("password").value;
-    addUser(emailStr, usernameStr, passwordStr);
+    let usernameLoginStr = document.getElementById("usernameLogin").value;
+    let passwordLoginStr = document.getElementById("passwordLogin").value;
+    loginUser(usernameLoginStr, passwordLoginStr);
 });
-//lägga in ny användare på sidan 
-async function addUser(email, username, password) {
-    let newUser = {
-        email: email,
-        username: username,
-        password: password
-    };
-    try {
-        let response = await fetch("http://127.0.0.1:3000/api/register", {
-            method: "POST",
-            headers: {
-                "content-type": "Application/json"
-            },
-            body: JSON.stringify(newUser)
-        });
-        let data = await response.json();
-        console.table(data);
-    } catch  {
-        console.log("N\xe5got gick fel!");
-    }
+async function loginUser(username, password) {
+    console.log(username, password);
 }
 
-},{}]},["j2YDk","1SICI"], "1SICI", "parcelRequireb346")
+},{}]},["ed6Mz","47T64"], "47T64", "parcelRequireb346")
 
-//# sourceMappingURL=index.18dbc454.js.map
+//# sourceMappingURL=login.333b87f1.js.map
