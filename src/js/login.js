@@ -24,10 +24,7 @@ async function loginUser(username, password) {
         })
     }); 
 
-    let data = await response.json();
-    
-    //lägger in JWT token i local storage 
-    localStorage.setItem('token', data.response.token); 
+    let data = await response.json(); 
 
     //Skickar med token för att nå skyddade sidan 
     let authResponse = await fetch('http://127.0.0.1:3000/api/mypage', {
@@ -41,8 +38,13 @@ async function loginUser(username, password) {
         throw new Error("Något har gått fel vid authoriseringen!");
         //något ska hända på sidan 
     } else {
+        //lägger in JWT token i local storage 
+        localStorage.setItem('token', data.response.token);
+
+        //lägge in användarnamn i local storage 
+        localStorage.setItem('user', username); 
+
+        //Flyttar till min sida
         location.href="minsida.html" 
     }
-
-
 }; 

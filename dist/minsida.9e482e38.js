@@ -142,14 +142,14 @@
       this[globalName] = mainExports;
     }
   }
-})({"ed6Mz":[function(require,module,exports) {
+})({"1lx41":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
 var HMR_USE_SSE = false;
-module.bundle.HMR_BUNDLE_ID = "ba77c333333b87f1";
+module.bundle.HMR_BUNDLE_ID = "aa49e4b49e482e38";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -583,46 +583,12 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
     });
 }
 
-},{}],"47T64":[function(require,module,exports) {
+},{}],"ffnym":[function(require,module,exports) {
 "use strict";
-//Logga in användare
-let loginBtnEL = document.getElementById("loginBtn");
-loginBtnEL.addEventListener("click", (event)=>{
-    event.preventDefault();
-    let usernameLoginStr = document.getElementById("usernameLogin").value;
-    let passwordLoginStr = document.getElementById("passwordLogin").value;
-    loginUser(usernameLoginStr, passwordLoginStr);
-});
-async function loginUser(username, password) {
-    let response = await fetch("http://127.0.0.1:3000/api/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            username: username,
-            password: password
-        })
-    });
-    let data = await response.json();
-    //Skickar med token för att nå skyddade sidan 
-    let authResponse = await fetch("http://127.0.0.1:3000/api/mypage", {
-        headers: {
-            "Authorization": "Bearer " + data.response.token
-        }
-    });
-    //om det inte är ok, något gått snett
-    if (!authResponse.ok) throw new Error("N\xe5got har g\xe5tt fel vid authoriseringen!");
-    else {
-        //lägger in JWT token i local storage 
-        localStorage.setItem("token", data.response.token);
-        //lägge in användarnamn i local storage 
-        localStorage.setItem("user", username);
-        //Flyttar till min sida
-        location.href = "minsida.html";
-    }
-}
+let secretUser = localStorage.getItem("user");
+let secretDiv = document.getElementById("secretMessage");
+secretDiv.innerHTML = "Inloggad som " + secretUser;
 
-},{}]},["ed6Mz","47T64"], "47T64", "parcelRequireb346")
+},{}]},["1lx41","ffnym"], "ffnym", "parcelRequireb346")
 
-//# sourceMappingURL=login.333b87f1.js.map
+//# sourceMappingURL=minsida.9e482e38.js.map

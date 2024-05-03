@@ -1,2 +1,64 @@
+body {
+  background-color: #ffbf49;
+  margin: 0;
+  font-family: Lucida Sans, Lucida Sans Regular, Lucida Grande, Lucida Sans Unicode, Geneva, Verdana, sans-serif;
+}
 
+main {
+  background-color: #ffd698;
+  border-radius: 5px;
+  width: 800px;
+  margin: 0 auto;
+  padding: 1%;
+}
+
+button {
+  color: #fff;
+  background-color: #003800;
+  border-radius: 4px;
+  margin-top: 1em;
+  padding: 10px;
+  font-weight: bold;
+}
+
+nav {
+  padding: 1%;
+}
+
+#navList {
+  margin-top: 0;
+  padding: 1%;
+  list-style-type: none;
+}
+
+#navList li {
+  float: right;
+  margin-right: 20px;
+  display: inline;
+}
+
+#navList a {
+  color: #ff4500;
+  padding: 1%;
+  font-size: 1.75em;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+li:hover {
+  color: #ff4500;
+}
+
+input {
+  border: 1px solid #858585;
+  border-radius: 4px;
+  width: 50%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  padding: .75em;
+}
+
+label {
+  font-weight: bold;
+}
 /*# sourceMappingURL=index.c92073ef.css.map */
