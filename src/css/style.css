@@ -63,3 +63,9 @@ input {
 label {
     font-weight: bold;  
 }
+
+/*errorDivs*/
+#errorDivReg, #errorDivLogin {
+    font-weight: bolder;
+    color: orangered;
+}

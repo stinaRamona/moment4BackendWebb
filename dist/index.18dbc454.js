@@ -587,12 +587,17 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 "use strict";
 //hämta in element 
 let registerBtnEl = document.getElementById("registerBtn");
+let errorDivReg = document.getElementById("errorDivReg");
 registerBtnEl.addEventListener("click", (event)=>{
     event.preventDefault();
     let emailStr = document.getElementById("email").value;
     let usernameStr = document.getElementById("username").value;
     let passwordStr = document.getElementById("password").value;
-    addUser(emailStr, usernameStr, passwordStr);
+    if (emailStr == "" || usernameStr == "" || passwordStr == "") errorDivReg.innerHTML = "Du m\xe5ste fylla i samtliga v\xe4rden!";
+    else {
+        addUser(emailStr, usernameStr, passwordStr);
+        errorDivReg.innerHTML = "Du \xe4r registrerad som anv\xe4ndare! G\xe5 till logga in sidan";
+    }
 });
 //lägga in ny användare på sidan 
 async function addUser(email, username, password) {

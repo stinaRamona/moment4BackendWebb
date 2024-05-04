@@ -2,6 +2,7 @@
 
 //hämta in element 
 let registerBtnEl = document.getElementById("registerBtn"); 
+let errorDivReg = document.getElementById("errorDivReg"); 
 
 registerBtnEl.addEventListener('click', (event)=> { 
     event.preventDefault(); 
@@ -10,8 +11,13 @@ registerBtnEl.addEventListener('click', (event)=> {
     let usernameStr = document.getElementById("username").value; 
     let passwordStr = document.getElementById("password").value; 
 
-    addUser(emailStr, usernameStr, passwordStr); 
-})
+    if(emailStr== "" || usernameStr == "" || passwordStr== ""){
+        errorDivReg.innerHTML = "Du måste fylla i samtliga värden!"
+    } else {
+        addUser(emailStr, usernameStr, passwordStr); 
+        errorDivReg.innerHTML = "Du är registrerad som användare! Gå till logga in sidan"
+    }
+}); 
 
 //lägga in ny användare på sidan 
 async function addUser(email, username, password) {

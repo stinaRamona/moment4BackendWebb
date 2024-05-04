@@ -585,9 +585,10 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"ffnym":[function(require,module,exports) {
 "use strict";
+//För att skriva ut meddelande till användaren som är inloggad
 let secretUser = localStorage.getItem("user");
 let secretDiv = document.getElementById("secretMessage");
-secretDiv.innerHTML = "Inloggad som " + secretUser;
+secretDiv.innerHTML = "V\xe4lkommen tillbaka " + secretUser;
 
 },{}]},["1lx41","ffnym"], "ffnym", "parcelRequireb346")
 

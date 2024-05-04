@@ -585,14 +585,18 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"47T64":[function(require,module,exports) {
 "use strict";
-//Logga in användare
+//hämta in element
 let loginBtnEL = document.getElementById("loginBtn");
+let errorDivLoginEl = document.getElementById("errorDivLogin");
 loginBtnEL.addEventListener("click", (event)=>{
     event.preventDefault();
     let usernameLoginStr = document.getElementById("usernameLogin").value;
     let passwordLoginStr = document.getElementById("passwordLogin").value;
-    loginUser(usernameLoginStr, passwordLoginStr);
+    //så inte tomma strängar går vidare 
+    if (usernameLoginStr == "" || passwordLoginStr == "") errorDivLoginEl.innerHTML = "V\xe4nligen fyll i anv\xe4ndarnamn och l\xf6senord!";
+    else loginUser(usernameLoginStr, passwordLoginStr);
 });
+//Logga in användare
 async function loginUser(username, password) {
     let response = await fetch("http://127.0.0.1:3000/api/login", {
         method: "POST",
@@ -604,6 +608,8 @@ async function loginUser(username, password) {
             password: password
         })
     });
+    //validering 
+    if (!response.ok) errorDivLoginEl.innerHTML = "Fel anv\xe4ndarnamn eller l\xf6senord";
     let data = await response.json();
     //Skickar med token för att nå skyddade sidan 
     let authResponse = await fetch("http://127.0.0.1:3000/api/mypage", {
@@ -611,8 +617,8 @@ async function loginUser(username, password) {
             "Authorization": "Bearer " + data.response.token
         }
     });
-    //om det inte är ok, något gått snett
-    if (!authResponse.ok) throw new Error("N\xe5got har g\xe5tt fel vid authoriseringen!");
+    //om det inte är ok
+    if (!authResponse.ok) errorDivLoginEl.innerHTML = "Kunde inte auttentisera anv\xe4ndaren";
     else {
         //lägger in JWT token i local storage 
         localStorage.setItem("token", data.response.token);

@@ -1,7 +1,8 @@
 "use strict"; 
 
-//Logga in användare
+//hämta in element
 let loginBtnEL = document.getElementById("loginBtn"); 
+let errorDivLoginEl = document.getElementById("errorDivLogin"); 
 
 loginBtnEL.addEventListener('click', (event) => {
     event.preventDefault(); 
@@ -9,9 +10,16 @@ loginBtnEL.addEventListener('click', (event) => {
     let usernameLoginStr = document.getElementById("usernameLogin").value; 
     let passwordLoginStr = document.getElementById("passwordLogin").value; 
 
-    loginUser(usernameLoginStr, passwordLoginStr); 
+    //så inte tomma strängar går vidare 
+    if(usernameLoginStr == "" || passwordLoginStr == "") {
+        errorDivLoginEl.innerHTML = "Vänligen fyll i användarnamn och lösenord!"; 
+    } else {
+        loginUser(usernameLoginStr, passwordLoginStr);
+    }
+     
 }); 
 
+//Logga in användare
 async function loginUser(username, password) {
     let response = await fetch("http://127.0.0.1:3000/api/login", {
         method: "POST", 
@@ -24,6 +32,11 @@ async function loginUser(username, password) {
         })
     }); 
 
+    //validering 
+    if(!response.ok){
+        errorDivLoginEl.innerHTML = "Fel användarnamn eller lösenord"
+    }
+
     let data = await response.json(); 
 
     //Skickar med token för att nå skyddade sidan 
@@ -33,11 +46,11 @@ async function loginUser(username, password) {
         }
     });
 
-    //om det inte är ok, något gått snett
+    //om det inte är ok
     if(!authResponse.ok) {
-        throw new Error("Något har gått fel vid authoriseringen!");
-        //något ska hända på sidan 
-    } else {
+        
+        errorDivLoginEl.innerHTML = "Kunde inte auttentisera användaren"
+    } else { 
         //lägger in JWT token i local storage 
         localStorage.setItem('token', data.response.token);
 

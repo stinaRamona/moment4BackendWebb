@@ -61,4 +61,9 @@ input {
 label {
   font-weight: bold;
 }
+
+#errorDivReg, #errorDivLogin {
+  color: #ff4500;
+  font-weight: bolder;
+}
 /*# sourceMappingURL=index.c92073ef.css.map */
