@@ -14,7 +14,9 @@ main {
 
 button {
   color: #fff;
-  background-color: #003800;
+  cursor: pointer;
+  background-color: #006e00;
+  border: 1px solid #084400;
   border-radius: 4px;
   margin-top: 1em;
   padding: 10px;
