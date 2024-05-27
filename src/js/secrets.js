@@ -11,6 +11,12 @@ let infoDiv = document.getElementById("accountInfo");
 secretDiv.innerHTML = "Välkommen tillbaka " + secretUser; 
 
 function init() {
+  //kontrollerar om token finns sparad i local storage 
+if(!localStorage.getItem('token')) {
+    window.location.href = "login.html"
+    return; 
+}
+
     //hämtar information om användaren  
 fetch('http://127.0.0.1:3000/api/mypage', {
     method: 'GET',
